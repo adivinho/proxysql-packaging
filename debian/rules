@@ -45,12 +45,12 @@ override_dh_builddeb:
 override_dh_auto_configure:
 	@echo "RULES.$@"
 
-	make clean && make
+	make clean && make debug
 	touch $@ 
 
 override_dh_auto_build:
 	@echo "RULES.$@"
-	make clean && make
+	make clean && make debug
 	touch $@ 
 
 override_dh_auto_install:

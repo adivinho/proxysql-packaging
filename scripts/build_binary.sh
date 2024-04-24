@@ -76,11 +76,7 @@ VERSION="$(grep CURVER $SOURCEDIR/Makefile | awk -F'=' '{print $2}' | tr -d ' ')
 export CC=${CC:-gcc}
 export CXX=${CXX:-g++}
 export CFLAGS=-fpic
-if [ -f /etc/debian_version ]; then
-    export CXXFLAGS=' -std=c++17 -fpic'
-else
-    export CXXFLAGS=' -std=c++11 -fpic'
-fi
+export CXXFLAGS=' -std=c++11 -fpic'
 export MAKE_JFLAG=-j4
 
 # Create a temporary working directory
