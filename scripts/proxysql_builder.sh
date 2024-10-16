@@ -186,14 +186,25 @@ get_system(){
     fi
     return
 }
+
 install_go() {
-    wget -q https://dl.google.com/go/go1.22.2.linux-amd64.tar.gz
-    tar -C /usr/bin -xzf go1.22.2.linux-amd64.tar.gz
-    export PATH=$PATH:/usr/bin/go/bin
+    if [ x"$ARCH" = "xx86_64" ]; then
+        wget https://go.dev/dl/go1.22.7.linux-amd64.tar.gz
+        rm -rf /usr/local/go
+        tar -C /usr/local -xzf go1.22.7.linux-amd64.tar.gz
+        update-alternatives --install /usr/bin/go go /usr/local/go/bin/go 1
+        update-alternatives --set go /usr/local/go/bin/go
+    else
+        wget https://go.dev/dl/go1.22.7.linux-arm64.tar.gz
+        rm -rf /usr/local/go
+        tar -C /usr/local -xzf go1.22.7.linux-arm64.tar.gz
+        update-alternatives --install /usr/bin/go go /usr/local/go/bin/go 1
+        update-alternatives --set go /usr/local/go/bin/go
+    fi
     go version
     which go
     command -v go
-    whereis go 
+    whereis go
 }
 
 update_pat() {
@@ -219,12 +230,15 @@ install_deps() {
     fi
     CURPLACE=$(pwd)
     RHEL=$(rpm --eval %rhel)
+    ARCH=$(echo $(uname -m) | sed -e 's:i686:i386:g')
     if [ "x$OS" = "xrpm" ]; then
       if [ "x${RHEL}" = "x7" -o "x${RHEL}" = "x8" ]; then
             switch_to_vault_repo
       fi
       yum -y install wget which
-      add_percona_yum_repo
+      if [ x"$ARCH" = "xx86_64" ]; then
+          add_percona_yum_repo
+      fi
 #      wget http://jenkins.percona.com/yum-repo/percona-dev.repo
 #      mv -f percona-dev.repo /etc/yum.repos.d/
       yum clean all
