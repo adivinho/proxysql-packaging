@@ -347,7 +347,7 @@ install_deps() {
           echo "waiting"
           sleep 1
       done
-      INSTALL_LIST="build-essential gnupg2 devscripts gawk pkg-config debhelper cmake wget libssl-dev gawk lynx zlib1g-dev bison byacc flex automake bzip2 cmake make g++ gcc git openssl libssl-dev libgnutls28-dev libtool patch gnutls-dev libgnutls28-dev libcurl4-openssl-dev libunwind8 libunwind-dev uuid-dev"
+      INSTALL_LIST="build-essential gnupg2 devscripts gawk pkg-config debhelper cmake wget libssl-dev gawk lynx zlib1g-dev bison byacc flex automake bzip2 cmake make g++ gcc git openssl libssl-dev libgnutls28-dev libtool patch gnutls-dev libgnutls28-dev libcurl4-openssl-dev libunwind8 libunwind-dev uuid-dev patchelf"
        until DEBIAN_FRONTEND=noninteractive apt-get -y --allow-unauthenticated install ${INSTALL_LIST}; do
         sleep 1
         echo "waiting"
