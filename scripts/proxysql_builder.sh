@@ -650,8 +650,8 @@ build_tarball(){
     sed -i 's/cd $SOURCEDIR/cd $SOURCEDIR\/proxysql2-${PROXYSQL_VERSION}/' ./proxysql-packaging/scripts/build_binary.sh
     sed -i '73i source $SOURCEDIR/proxysql.properties' ./proxysql-packaging/scripts/build_binary.sh
     sed -i '248i cp proxysql-$VERSION-$(uname -s)-$(uname -m)$GLIBC_VER.tar.gz $SOURCEDIR' ./proxysql-packaging/scripts/build_binary.sh
-    sed -i 's/s|go build|${BINGO} build|g/s|go build|\/usr\/bin\/go\/bin\/go build|g/' ./proxysql-packaging/scripts/build_binary.sh
-    sed -i 's/s|go mod|${BINGO} mod|g/s|go mod|\/usr\/bin\/go\/bin\/go mod|g/' ./proxysql-packaging/scripts/build_binary.sh
+    #sed -i 's/s|go build|${BINGO} build|g/s|go build|\/usr\/bin\/go\/bin\/go build|g/' ./proxysql-packaging/scripts/build_binary.sh
+    #sed -i 's/s|go mod|${BINGO} mod|g/s|go mod|\/usr\/bin\/go\/bin\/go mod|g/' ./proxysql-packaging/scripts/build_binary.sh
     sed -i 's/sudo bash/bash/' ./proxysql-packaging/scripts/build_binary.sh
     sed -i '/BINGO/d' ./proxysql-packaging/scripts/build_binary.sh
     bash -x ./proxysql-packaging/scripts/build_binary.sh ${WORKDIR}/TARGET
