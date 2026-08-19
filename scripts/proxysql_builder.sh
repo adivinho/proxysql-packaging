@@ -227,8 +227,8 @@ update_pat() {
     git submodule update --init
     which go
     sed -i 's|command -v go|command -v bash|g' build_scheduler.sh
-    sed -i 's|go build|/usr/bin/go/bin/go build|g' build_scheduler.sh
-    sed -i 's|go mod|/usr/bin/go/bin/go mod|g' build_scheduler.sh
+    #sed -i 's|go build|/usr/bin/go build|g' build_scheduler.sh
+    #sed -i 's|go mod|/usr/bin/go mod|g' build_scheduler.sh
     bash -x build_scheduler.sh
     ./pxc_scheduler_handler --version
 }
